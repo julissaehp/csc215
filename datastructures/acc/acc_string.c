@@ -1,13 +1,5 @@
  
-	/*acc_strlen
-	acc_low2up	
-    acc_strcat
-    acc_strcmp 
-    acc_strrev 
-    acc_strextr
-	acc_strinsrt
-	acc_delsub
-	acc_strrplc*/
+	
 
     // Length of string
     int acc_strlen(char string[])
