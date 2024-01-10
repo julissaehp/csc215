@@ -1,4 +1,6 @@
- 
+ #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 	
 
     // Length of string
@@ -76,4 +78,37 @@ char acc_strrev(char input_string[])
         output_string[array_length-i] = input_string[i]; 
     }
     return output_string;
+}
+
+char* acc_strextr(const char *str, int i, int j, int m, int n) {
+    char substr[100];
+    i = m;
+    while (str[i] != '\0' && n > 0) {
+        substr[j] = str[i];
+        i++;
+        j++;
+        n--;
+
+
+    }
+    substr[j] = '\0';
+    return substr;
+}
+
+
+// Return string made from inserting ins_str . 
+int acc_strinsrt(char* text, char* ins_str, char* merge_str, int pos) {
+    int i = 0, j = 0, k = 0;
+
+    while (text[i] != '\0') {
+        if (i == pos) {
+            while (ins_str[k] != '\0') {
+                merge_str[j++] = ins_str[k++];
+            }
+        }
+        merge_str[j++] = text[i++];
+    }
+    merge_str[j] = '\0';
+
+    return 0; 
 }
