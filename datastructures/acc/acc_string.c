@@ -16,18 +16,19 @@
 
 // low2up
 
-char acc_low2up(char string[])
-{
-    for (int i = 0; string[i] != '\0'; i++)
-    {
-        if ('a' <= string[i] <= 'z')
-        {
-            string[i] = string[i] - ('a' - 'A');
-        }
+char acc_low2up (char *str) {
+    char str[100], upper_str[100];
+    int i = 0;
+    while (str[i] != '\0') {
+        if (str[i] >= 'a' && str[i] <= 'z')
+            upper_str[i] = str[i] - 32;
+        else
+            upper_str[i] = str[i];
+        i++;
     }
-    return string;
+    upper_str[i] = '\0';
+    return upper_str;
 }
-
 // strcat
 
 char acc_strcat(char initial[], char append[])
