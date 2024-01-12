@@ -1,3 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "console_utils.h"
+
+
 int acc_strlen(char *str) {
     int i = 0;
     while (str[i] != '\0')
@@ -34,15 +40,15 @@ char* acc_strcat(char *Dest_Str, const char *Source_Str) {
     return Dest_Str;
 }
 
-int acc_strcmp(const char *str1, const char *str2) {
-    int i = 0, len1 = strlen(str1), len2 = strlen(str2);
+int acc_strcmp(const char *j1, const char *j2) {
+    int i = 0, len1 = strlen(j1), len2 = strlen(j2);
 
     while (i < len1 && i < len2) {
-        if (str1[i] != str2[i]) {
-            if (str1[i] > str2[i]) {
-                return 1; // str1 is greater than str2
+        if (j1[i] != j2[i]) {
+            if (j1[i] > j2[i]) {
+                return 1; // j1 is greater than j2
             } else {
-                return -1; // str2 is greater than str1
+                return -1; // j2 is greater than j1
             }
         }
         i++;
@@ -51,9 +57,9 @@ int acc_strcmp(const char *str1, const char *str2) {
     if (len1 == len2) {
         return 0; // Both strings are equal
     } else if (len1 > len2) {
-        return 1; // str1 is greater than str2
+        return 1; // 1 is greater than 2
     } else {
-        return -1; // str2 is greater than str1
+        return -1; // 2 is greater than 1
     }
 }
 
@@ -84,7 +90,7 @@ char* acc_strrev(char *str) {
     return str;
 }
 
-// Return string made from inserting ins_str in text at position pos. 
+ 
 int acc_strinsrt(char* text, char* ins_str, char* merge_str, int pos) {
     int i = 0, j = 0, k = 0;
 
@@ -221,7 +227,7 @@ int is_palindrome(const char *str) {
             i++;
             j--;
         } else {
-            return 0;  // Not a palindrome
+            return 0;  
         }
     }
 
