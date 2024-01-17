@@ -1,235 +1,114 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> 
 #include <string.h>
-#include "console_utils.h"
 
+int main()
+{
+    char str[100];
+    printf ("\n Enter the string: "); 
+    fgets(str, 100, stdin); 
 
-int acc_strlen(char *str) {
-    int i = 0;
-    while (str[i] != '\0')
-        i++;
-    return i;
-
-}
-
-char acc_low2up (char *str) {
-    char str[100], upper_str[100];
-    int i = 0;
-    while (str[i] != '\0') {
-        if (str[i] >= 'a' && str[i] <= 'z')
-            upper_str[i] = str[i] - 32;
-        else
-            upper_str[i] = str[i];
-        i++;
-    }
-    upper_str[i] = '\0';
-    return upper_str;
-}
-
-char* acc_strcat(char *Dest_Str, const char *Source_Str) {
-    int i = 0, j = 0;
-
-    while (Dest_Str[i] != '\0')
-        i++;
-    while (Source_Str[j] != '\0') {
-        Dest_Str[i] = Source_Str[j];
-        i++;
-        j++;
-    }
-    Dest_Str[i] = '\0';
-    return Dest_Str;
-}
-
-int acc_strcmp(const char *j1, const char *j2) {
-    int i = 0, len1 = strlen(j1), len2 = strlen(j2);
-
-    while (i < len1 && i < len2) {
-        if (j1[i] != j2[i]) {
-            if (j1[i] > j2[i]) {
-                return 1; // j1 is greater than j2
-            } else {
-                return -1; // j2 is greater than j1
-            }
+    for(int i = 0; str[i] != '\0'; i++){
+        if(str[i] == ';'){
+            str[i] = str[i + 1];
+            } // Move back to recheck the current position
         }
-        i++;
-    }
 
-    if (len1 == len2) {
-        return 0; // Both strings are equal
-    } else if (len1 > len2) {
-        return 1; // 1 is greater than 2
-    } else {
-        return -1; // 2 is greater than 1
-    }
-}
-
-char* acc_strextr(const char *str, int i, int j, int m, int n) {
-    char substr[100];
-    i = m;
-    while (str[i] != '\0' && n > 0) {
-        substr[j] = str[i];
-        i++;
-        j++;
-        n--;
-    }
-    substr[j] = '\0';
-    return substr;
-}
-
-char* acc_strrev(char *str) {
-    char temp;
-    int i = 0, j = 0;
-    j = strlen(str) - 1;
-    while (i < j) {
-        temp = str[j];
-        str[j] = str[i];
-        str[i] = temp;
-        i++;
-        j--;
-    }
-    return str;
-}
-
- 
-int acc_strinsrt(char* text, char* ins_str, char* merge_str, int pos) {
-    int i = 0, j = 0, k = 0;
-
-    while (text[i] != '\0') {
-        if (i == pos) {
-            while (ins_str[k] != '\0') {
-                merge_str[j++] = ins_str[k++];
-            }
+    // Period to commas
+    for(int i = 0; str[i] != '\0'; i++){
+        if (str[i] == '.') {
+            str[i] = ',';
         }
-        merge_str[j++] = text[i++];
     }
-    merge_str[j] = '\0';
-
-    return 0; 
 }
 
-char* acc_delsub(char* text, const char*str) {
-    char* new_str = (char*)malloc(200 * sizeof(char));
-    if (new_str == NULL) {
-        fprintf(stderr, "Memory allocation failed.\n");
-        exit(EXIT_FAILURE);
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char students[7][20] = {{"Abraham"}, {"Benjamin"}, {"Charles"}, {"Devin"}, {"Edward"}};
+    char newStudent[20];
+
+    int pos, i;
+    int numberStudents = 5;
+
+    printf("Initial list of students:\n");
+    for(int i = 0; i < numberStudents; i++) {
+        printf("%s\n", students[i]);
     }
+
+
+    printf("\nEnter the new student's name: ");
+    fgets(newStudent, 20, stdin);
+
+    for(pos = 0; pos < numberStudents; pos++)
+    {
+        if(strcmp(newStudent, students[i]) < 0)
+        {
+            break;
+        }
+    }
+
+    for(i = numberStudents; i > pos; i--) {
+        strcpy(students[i], students[i - 1]);
+    }
+
+    // Insert the new name at the correct position
+    strcpy(students[pos], newStudent);
+    numberStudents++;
+
     
-    int i = 0, j = 0, found = 0, k, n = 0, copy_loop = 0;
 
-    while (text[i] != '\0') {
-        j = 0, found = 0, k = i;
-        while (text[k] == str[j] && str[j] != '\0') {
-            k++;
-            j++;
-        }
-        if (str[j] == '\0')
-            copy_loop = k;
-        new_str[n] = text[copy_loop];
-        i++;
-        copy_loop++;
-        n++;
+    // Display the updated list of students
+    printf("\nUpdated list of students after inserting '%s':\n", newStudent);
+    for (int i = 0; i < numberStudents; i++) {
+        printf("%s\n", students[i]);
     }
-    new_str[n] = '\0';
 
-    return new_str;
+    return 0;
 }
 
-char* acc_strrplc(char* str, const char* pat, const char* rep_pat) {
-    char* new_str = (char*)malloc(200 * sizeof(char));
-    if (new_str == NULL) {
-        fprintf(stderr, "Memory allocation failed.\n");
-        exit(EXIT_FAILURE);
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char students[7][20] = {{"Abraham"}, {"Benjamin"}, {"Charles"}, {"Devin"}, {"Edward"}};
+    char deletedStudent[20];
+    int numStudents = 5;
+
+    // Lists students
+    printf("Initial list of students:\n");
+    for (int i = 0; i < numStudents; i++) {
+        printf("%s\n", students[i]);
     }
 
-    int i = 0, j = 0, k, n = 0, copy_loop = 0, rep_index = 0;
-    while (str[i] != '\0') {
-        j = 0, k = i;
-        while (str[k] == pat[j] && pat[j] != '\0') {
-            k++;
-            j++;
-        }
-        if (pat[j] == '\0') {
-            copy_loop = k;
-            while (rep_pat[rep_index] != '\0') {
-                new_str[n] = rep_pat[rep_index];
-                rep_index++;
-                n++;
-            }
-        }
-        new_str[n] = str[copy_loop];
-        i++;
-        copy_loop++;
-        n++;
-    }
-    new_str[n] = '\0';
-    return new_str;
-}
+    // Set name to be deleted
+    printf("\nWhich name should be deleted?: ");
+    fgets(deletedStudent, 20, stdin);
 
-char (*acc_shortstrs(char names[][10], int n))[10] {
-    char temp[10];
-    int i, j;
 
-    for (i = 0; i < n; i++) {
-        for (j = 0; j < n - 1; j++) {
-            if (strcmp(names[j], names[j + 1]) > 0) {
-                strcpy(temp, names[j]);
-                strcpy(names[j], names[j + 1]);
-                strcpy(names[j + 1], temp);
-            }
+    // Find the position of the name to delete
+    int position;
+    for (position = 0; position < numStudents; position++) {
+        if (strcmp(deletedStudent, students[position]) == 0) {
+            break;
         }
     }
 
-    char (*sorted_names)[10] = (char (*)[10])malloc(n * sizeof(names[0]));
-
-    if (sorted_names == NULL) {
-        fprintf(stderr, "Memory allocation failed.\n");
-        exit(EXIT_FAILURE);
+    // Checking for name
+    if (position == numStudents) {
+        printf("Name '%s' not found in the list.\n", deletedStudent);
     }
 
-    for (i = 0; i < n; i++) {
-        strcpy(sorted_names[i], names[i]);
+    // Shift names over
+    for (int i = position; i < numStudents - 1; i++) {
+        strcpy(students[i], students[i + 1]);
     }
+    (numStudents)--;
 
-    return sorted_names;
-}
-
-void acc_count(const char *text, int *word_count, int *line_count, int *char_count) {
-    int i = 0;
-
-    printf("\n This is stuff %s", text);
-
-    while (text[i] != '\0') {
-        (*char_count)++;
-
-        if (text[i] == '\n' || i == 79)
-            (*line_count)++;
-
-        if (text[i] == ' ' && text[i + 1] != ' ')
-            (*word_count)++;
-
-        i++;
+    printf("\nUpdated list of students after deleting '%s':\n", deletedStudent);
+    for (int i = 0; i < numStudents; i++) {
+        printf("%s\n", students[i]);
     }
-}
-
-int is_palindrome(const char *str) {
-    int i = 0, j, length = 0;
-
-    while (str[i] != '\0' && str[i] != '\n') {
-        length++;
-        i++;
-    }
-
-    i = 0;
-    j = length - 1;
-
-    while (i < length / 2) {
-        if (str[i] == str[j]) {
-            i++;
-            j--;
-        } else {
-            return 0;  
-        }
-    }
-
-    return 1;  // Palindrome
 }
